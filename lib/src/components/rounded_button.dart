@@ -38,6 +38,7 @@ class RoundedButton extends PositionComponent with TapCallbacks {
   void render(Canvas canvas) {
     canvas.drawRRect(_rRect, _bgPaint);
     canvas.drawRRect(_rRect, _borderPaint);
+    _textDrawable.paint(canvas, _textOffset);
   }
 
   @override

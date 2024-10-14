@@ -10,6 +10,7 @@ class BackButton extends SimpleButton with HasGameRef<MyGame> {
           Path()
             ..moveTo(22, 8)
             ..lineTo(10, 20)
+            ..lineTo(22, 32)
             ..moveTo(12, 20)
             ..lineTo(34, 20),
           position: Vector2.all(10),

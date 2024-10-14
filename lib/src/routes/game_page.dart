@@ -6,7 +6,6 @@ import 'package:flame/extensions.dart';
 import 'package:fruit_ninja/src/components/back_button.dart';
 import 'package:fruit_ninja/src/components/fruit_component.dart';
 import 'package:fruit_ninja/src/components/pause_button.dart';
-import 'package:fruit_ninja/src/components/rectangle_test.dart';
 import 'package:fruit_ninja/src/config/app_config.dart';
 import 'package:fruit_ninja/src/game.dart';
 
@@ -14,15 +13,19 @@ class GamePage extends Component with DragCallbacks, HasGameRef<MyGame> {
   final Random random = Random();
   late List<double> fruitsTime;
   late double time, countDown;
-  TextComponent? _countDownTextComponent;
+  TextComponent? _countDownTextComponent,
+      _mistakeTextComponent,
+      _scoreTextComponent;
   bool _countDownFinished = false;
+  late int mistakeCount, score;
 
   @override
   void onMount() {
     super.onMount();
     fruitsTime = [];
-
     countDown = 3;
+    mistakeCount = 0;
+    score = 0;
     time = 0;
     _countDownFinished = false;
     double initTime = 0;
@@ -48,6 +51,17 @@ class GamePage extends Component with DragCallbacks, HasGameRef<MyGame> {
             position: game.size / 2,
             anchor: Anchor.center,
             size: Vector2.all(50)),
+        _mistakeTextComponent = TextComponent(
+          text: 'Mistake: $mistakeCount',
+          position: Vector2(game.size.x - 10, 10),
+          anchor: Anchor.topRight,
+        ),
+        _scoreTextComponent = TextComponent(
+          text: 'Score: $score',
+          position:
+              Vector2(game.size.x - 10, _mistakeTextComponent!.position.y + 40),
+          anchor: Anchor.topRight,
+        ),
       ],
     );
   }
@@ -102,5 +116,22 @@ class GamePage extends Component with DragCallbacks, HasGameRef<MyGame> {
         }
       },
     );
+  }
+
+  void gameOver() {
+    game.router.pushNamed('game-over');
+  }
+
+  void addScore() {
+    score++;
+    _scoreTextComponent?.text = 'Score: $score';
+  }
+
+  void addMistake() {
+    mistakeCount++;
+    _mistakeTextComponent?.text = 'Mistake: $mistakeCount';
+    if (mistakeCount >= 3) {
+      gameOver();
+    }
   }
 }

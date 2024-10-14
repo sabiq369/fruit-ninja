@@ -3,14 +3,7 @@ import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/parallax.dart';
-import 'package:fruit_ninja/src/components/rectangle_test.dart';
 import 'package:fruit_ninja/src/config/app_config.dart';
-import 'package:flame/components.dart';
-import 'package:fruit_ninja/src/models/fruit_model.dart';
-import 'package:fruit_ninja/src/models/fruit_model.dart';
-import 'package:fruit_ninja/src/models/fruit_model.dart';
-import 'package:fruit_ninja/src/models/fruit_model.dart';
-import 'package:fruit_ninja/src/models/fruit_model.dart';
 import 'package:fruit_ninja/src/models/fruit_model.dart';
 import 'package:fruit_ninja/src/routes/game_over.dart';
 import 'package:fruit_ninja/src/routes/game_page.dart';
@@ -41,7 +34,7 @@ class MyGame extends FlameGame {
           [
             await ParallaxLayer.load(
               ParallaxImageData(
-                'bg_2.png',
+                'bg_3.png',
               ),
             )
           ],

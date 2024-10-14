@@ -4,6 +4,7 @@ import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame/rendering.dart';
 import 'package:fruit_ninja/src/game.dart';
+import 'package:fruit_ninja/src/routes/game_page.dart';
 
 class GameOverRoute extends Route {
   GameOverRoute() : super(GameOverPage.new, transparent: true);
@@ -19,6 +20,11 @@ class GameOverRoute extends Route {
 
   @override
   void onPop(Route nextRoute) {
+    final routeChildren = nextRoute.children.whereType<GamePage>();
+    if (routeChildren.isNotEmpty) {
+      final gamePage = routeChildren.first;
+      gamePage.removeAll(gamePage.children);
+    }
     nextRoute
       ..resumeTime()
       ..removeRenderEffect();

@@ -2,7 +2,6 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flame/components.dart';
-import 'package:flutter/material.dart';
 import 'package:fruit_ninja/src/config/app_config.dart';
 import 'package:fruit_ninja/src/config/utls.dart';
 import 'package:fruit_ninja/src/models/fruit_model.dart';
@@ -43,17 +42,30 @@ class FruitComponent extends SpriteComponent {
   @override
   void update(double dt) {
     super.update(dt);
+    if (_initPosition.distanceTo(position) > 60) {
+      canDragOnShape = true;
+    }
     angle += .5 * dt;
     angle %= 2 * pi;
-    position +=
-        Vector2(0, -(velocity.y * dt - .5 * AppConfig.gravity * dt * dt));
+    position += Vector2(
+        velocity.x, -(velocity.y * dt - .5 * AppConfig.gravity * dt * dt));
     velocity.y += (AppConfig.acceleration + AppConfig.gravity) * dt;
     if (position.y - AppConfig.objSize > pageSize.y) {
       removeFromParent();
+      if (!divided && !fruit.isBomb) {
+        parentComponent.addMistake();
+      }
     }
   }
 
   void touchAtPoint(Vector2 vector2) {
+    if (!canDragOnShape) {
+      return;
+    }
+    if (fruit.isBomb) {
+      parentComponent.gameOver();
+      return;
+    }
     final a = Utils.getAngleOfTouchPoint(
         center: position, initAngle: angle, touch: vector2);
 
@@ -71,7 +83,7 @@ class FruitComponent extends SpriteComponent {
           parentComponent,
           center - Vector2(size.x / 2 * cos(angle), size.x / 2 * sin(angle)),
           fruit: fruit,
-          image: dividedImage1.composeSync(),
+          image: dividedImage2.composeSync(),
           acceleration: acceleration,
           velocity: Vector2(velocity.x - 2, velocity.y),
           pageSize: pageSize,
@@ -89,7 +101,7 @@ class FruitComponent extends SpriteComponent {
           angle: angle,
           anchor: Anchor.center,
           fruit: fruit,
-          image: dividedImage2.composeSync(),
+          image: dividedImage1.composeSync(),
           acceleration: acceleration,
           velocity: Vector2(velocity.x + 2, velocity.y),
           pageSize: pageSize,
@@ -137,6 +149,7 @@ class FruitComponent extends SpriteComponent {
         ),
       ]);
     }
+    parentComponent.addScore();
     removeFromParent();
   }
 }
