@@ -5,5 +5,5 @@ class AppConfig {
   static const gravity = -9.81;
   static const double objSize = 50;
   static const double acceleration = -400;
-  static final Vector2 shapeSize = Vector2.all(50);
+  static final Vector2 shapeSize = Vector2.all(65);
 }
