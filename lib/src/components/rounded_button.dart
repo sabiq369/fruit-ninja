@@ -18,7 +18,7 @@ class RoundedButton extends PositionComponent with TapCallbacks {
     required Color borderColor,
     super.anchor = Anchor.center,
   }) : _textDrawable = TextPaint(
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 20,
             color: Color(0xff000000),
             fontWeight: FontWeight.w800,

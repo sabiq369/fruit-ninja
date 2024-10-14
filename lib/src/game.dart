@@ -19,7 +19,9 @@ class MyGame extends FlameGame {
     FruitModel(image: 'grapes.png'),
     FruitModel(image: "kiwi.png"),
     FruitModel(image: "orange.png"),
-    FruitModel(image: "pineapple.png"),
+    FruitModel(image: "papaya.png"),
+    FruitModel(image: "strawberry.png"),
+    FruitModel(image: "watermelon.png"),
   ];
 
   @override

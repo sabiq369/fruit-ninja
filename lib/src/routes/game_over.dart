@@ -35,8 +35,6 @@ class GameOverPage extends Component with TapCallbacks, HasGameRef<MyGame> {
   late TextComponent _textComponent;
   @override
   void onLoad() async {
-    print('|||||| game over ||||||||');
-
     final game = findGame()!;
     addAll(
       [

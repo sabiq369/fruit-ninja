@@ -21,21 +21,19 @@ class FruitComponent extends SpriteComponent {
   FruitComponent(
     this.parentComponent,
     Vector2 p, {
-    Vector2? size,
+    super.size,
     required this.velocity,
     required this.acceleration,
     required this.pageSize,
     required this.image,
     required this.fruit,
-    double? angle,
+    super.angle,
     Anchor? anchor,
     this.divided = false,
   }) : super(
             sprite: Sprite(image),
             position: p,
-            size: size,
-            anchor: anchor ?? Anchor.center,
-            angle: angle) {
+            anchor: anchor ?? Anchor.center) {
     _initPosition = p;
     canDragOnShape = false;
   }

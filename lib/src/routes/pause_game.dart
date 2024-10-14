@@ -29,8 +29,6 @@ class PausePage extends Component with TapCallbacks, HasGameRef<MyGame> {
   late TextComponent _textComponent;
   @override
   void onLoad() async {
-    print('|||||| pause load ||||||||');
-
     final game = findGame()!;
     addAll(
       [

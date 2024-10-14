@@ -1,6 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
-
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:fruit_ninja/src/config/app_config.dart';
@@ -20,13 +18,6 @@ class RectangleTest extends RectangleComponent {
           position: position,
           anchor: Anchor.center,
         );
-
-  @override
-  void onLoad() async {
-    super.onLoad();
-    print('|||||| scrn size ||||||');
-    print(pageSize);
-  }
 
   @override
   void update(double dt) {

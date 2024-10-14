@@ -6,10 +6,10 @@ import 'package:flame/events.dart';
 abstract class SimpleButton extends PositionComponent with TapCallbacks {
   final Paint _borderPaint = Paint()
     ..style = PaintingStyle.stroke
-    ..color = Color(0x66ffffff);
+    ..color = const Color(0x66ffffff);
   final Paint _iconPaint = Paint()
     ..style = PaintingStyle.stroke
-    ..color = Color(0x66aaaaaa)
+    ..color = const Color(0x66aaaaaa)
     ..strokeWidth = 7;
   final Path _iconPath;
   VoidCallback? action;
@@ -21,7 +21,8 @@ abstract class SimpleButton extends PositionComponent with TapCallbacks {
 
   @override
   void render(Canvas canvas) {
-    canvas.drawRRect(RRect.fromRectAndRadius(size.toRect(), Radius.circular(8)),
+    canvas.drawRRect(
+        RRect.fromRectAndRadius(size.toRect(), const Radius.circular(8)),
         _borderPaint);
     canvas.drawPath(_iconPath, _iconPaint);
   }
